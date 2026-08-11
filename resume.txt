@@ -1,0 +1,24 @@
+Raju Singh
+
+B.Tech CSE AIML Student
+
+Skills:
+Python
+HTML
+CSS
+JavaScript
+
+Education:
+GLA University Mathura
+
+Projects:
+Portfolio Website
+Weather Dashboard
+
+Achievements:
+Completed Summer Bootcamp
+Participated in AI Workshop
+
+Email: rajholkar08@gmail.com
+GitHub: https://github.com/rajholkar08-code
+LinkedIn: https://www.linkedin.com/in/raju-singh-57a941383/

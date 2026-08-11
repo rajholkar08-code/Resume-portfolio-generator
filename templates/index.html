@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resume Portfolio Generator</title>
+</head>
+<body>
+
+<h1>Upload Resume</h1>
+
+<form method="POST"
+      action="/upload"
+      enctype="multipart/form-data">
+
+    <input type="file" name="resume">
+
+    <br><br>
+
+    <label>Upload Photo</label>
+    <input type="file" name="photo">
+
+    <br><br>
+    
+    <select name="theme">
+        <option value="blue">Blue</option>
+        <option value="dark">Dark</option>
+        <option value="green">Green</option>
+    </select>
+
+    <br><br>
+
+    <button type="submit">
+        Generate Portfolio
+    </button>
+
+</form>
+
+</body>
+</html>

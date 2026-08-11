@@ -1,0 +1,159 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f1f5f9;
+    margin: 0;
+    padding: 30px;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+.hero{
+    text-align:center;
+    padding:40px;
+    border-bottom:2px solid #e5e7eb;
+}
+
+.hero h1{
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+.hero h2{
+    font-size:22px;
+    font-weight:normal;
+}
+
+.card{
+    background:#f8fafc;
+    border:none;
+    padding:20px;
+    margin:20px 0;
+    border-radius:15px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.08);
+}
+
+.card{
+    background:#f8fafc;
+    border:none;
+    padding:20px;
+    margin:20px 0;
+    border-radius:15px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.08);
+}
+
+.skill{
+    display:inline-block;
+    background:#2563eb;
+    color:white;
+    padding:8px 15px;
+    border-radius:20px;
+    margin:5px;
+}
+
+.profile{
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    object-fit:cover;
+    margin-bottom:20px;
+}
+
+.project-card{
+    background:white;
+    padding:20px;
+    margin:15px 0;
+    border-radius:15px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.08);
+}
+
+.project-card h4{
+    margin:0;
+    color:#2563eb;
+}
+
+.project-card p{
+    margin-top:10px;
+    color:#64748b;
+}
+
+.download-btn{
+    display:inline-block;
+    background:#2563eb;
+    color:white;
+    padding:10px 20px;
+    border-radius:10px;
+    text-decoration:none;
+    margin-bottom:20px;
+}
+
+.download-btn:hover{
+    opacity:0.9;
+}
+
+.social-icons{
+    font-size:30px;
+    margin-bottom:15px;
+}
+
+footer{
+    text-align:center;
+    margin-top:40px;
+    color:#64748b;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    transition:0.3s;
+}
+
+a{
+    color:#2563eb;
+    text-decoration:none;
+}
+
+a:hover{
+    text-decoration:underline;
+}
+
+@media(max-width:768px){
+
+    .container{
+        padding:20px;
+    }
+
+    .hero h1{
+        font-size:30px;
+    }
+
+    .hero h2{
+        font-size:18px;
+    }
+}
+
+h1{
+    color:#2563eb;
+}
+
+h2{
+    color:#64748b;
+}
+
+h3{
+    color:#0f172a;
+    margin-top:25px;
+}
+
+ul{
+    margin-left:20px;
+}
+
+li{
+    margin-bottom:6px;
+}
