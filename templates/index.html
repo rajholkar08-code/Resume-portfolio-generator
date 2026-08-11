@@ -1,38 +1,345 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Resume Portfolio Generator</title>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>PortfolioAI - Resume Portfolio Generator</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
 </head>
+
 <body>
 
-<h1>Upload Resume</h1>
+<div class="home-container">
 
-<form method="POST"
-      action="/upload"
-      enctype="multipart/form-data">
+    <!-- NAVBAR -->
 
-    <input type="file" name="resume">
+    <nav class="navbar">
 
-    <br><br>
+        <div class="brand">
 
-    <label>Upload Photo</label>
-    <input type="file" name="photo">
+            <div class="brand-icon">
+                ✦
+            </div>
 
-    <br><br>
-    
-    <select name="theme">
-        <option value="blue">Blue</option>
-        <option value="dark">Dark</option>
-        <option value="green">Green</option>
-    </select>
+            <div>
+                <h2>PortfolioAI</h2>
 
-    <br><br>
+                <p>
+                    AI Resume Portfolio Generator
+                </p>
+            </div>
 
-    <button type="submit">
-        Generate Portfolio
-    </button>
+        </div>
 
-</form>
+
+        <div class="ai-badge">
+            <span>●</span>
+            AI Powered
+        </div>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section class="home-hero">
+
+        <!-- LEFT -->
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+                ✨ Create your portfolio in seconds
+            </div>
+
+
+            <h1>
+                Turn Your Resume Into a
+                <span>Professional Portfolio</span>
+            </h1>
+
+
+            <p class="hero-description">
+
+                Upload your resume and let AI automatically
+                extract your skills, projects, education and
+                achievements to create a beautiful portfolio.
+
+            </p>
+
+
+            <!-- UPLOAD FORM -->
+
+            <form
+                action="/upload"
+                method="POST"
+                enctype="multipart/form-data"
+            >
+
+                <!-- RESUME -->
+
+                <div class="upload-box">
+
+                    <div class="upload-icon">
+                        📄
+                    </div>
+
+                    <div class="upload-info">
+
+                        <h3>
+                            Upload Your Resume
+                        </h3>
+
+                        <p>
+                            PDF, TXT or DOCX
+                        </p>
+
+                    </div>
+
+                    <label class="choose-btn">
+
+                        Choose Resume
+
+                        <input
+                            type="file"
+                            name="resume"
+                            accept=".txt,.pdf,.doc,.docx"
+                            required
+                        >
+
+                    </label>
+
+                    <span class="file-name">
+                        No resume selected
+                    </span>
+
+                </div>
+
+
+                <!-- PHOTO -->
+
+                <div class="upload-box">
+
+                    <div class="upload-icon">
+                        🖼️
+                    </div>
+
+                    <div class="upload-info">
+
+                        <h3>
+                            Profile Photo
+                        </h3>
+
+                        <p>
+                            JPG or PNG
+                        </p>
+
+                    </div>
+
+                    <label class="choose-btn">
+
+                        Choose Photo
+
+                        <input
+                            type="file"
+                            name="photo"
+                            accept=".jpg,.jpeg,.png"
+                        >
+
+                    </label>
+
+                    <span class="file-name">
+                        Optional
+                    </span>
+
+                </div>
+
+
+                <!-- THEME -->
+
+                <div class="theme-box">
+
+                    <div class="theme-title">
+
+                        🎨
+
+                        <strong>
+                            Portfolio Theme
+                        </strong>
+
+                    </div>
+
+
+                    <select name="theme">
+
+                        <option value="blue">
+                            Blue
+                        </option>
+
+                        <option value="dark">
+                            Dark
+                        </option>
+
+                        <option value="green">
+                            Green
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- GENERATE -->
+
+                <button
+                    type="submit"
+                    class="generate-btn"
+                >
+
+                    ✨ Generate My Portfolio
+                    <span>→</span>
+
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- RIGHT PREVIEW -->
+
+        <div class="preview-container">
+
+            <div class="preview-header">
+
+                <span>●</span>
+
+                Portfolio Preview
+
+            </div>
+
+
+            <div class="preview-card">
+
+                <div class="preview-profile">
+                    👤
+                </div>
+
+
+                <div class="preview-title"></div>
+
+                <div class="preview-subtitle"></div>
+
+
+                <div class="preview-skills">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </div>
+
+
+                <div class="preview-lines">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </div>
+
+
+                <div class="preview-projects">
+
+                    <div></div>
+                    <div></div>
+
+                </div>
+
+            </div>
+
+
+            <p class="preview-text">
+
+                Your resume will be transformed into
+                this professional portfolio.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer class="home-footer">
+
+        <p>
+            ⚡ Powered by AI &nbsp; • &nbsp;
+            Built with Flask & Gemini
+        </p>
+
+    </footer>
+
+</div>
+
+
+<!-- SIMPLE FILE NAME SCRIPT -->
+
+<script>
+
+const resumeInput =
+    document.querySelector('input[name="resume"]');
+
+const photoInput =
+    document.querySelector('input[name="photo"]');
+
+const fileNames =
+    document.querySelectorAll('.file-name');
+
+
+resumeInput.addEventListener(
+    'change',
+    function () {
+
+        if (this.files.length > 0) {
+
+            fileNames[0].textContent =
+                this.files[0].name;
+
+        }
+
+    }
+);
+
+
+photoInput.addEventListener(
+    'change',
+    function () {
+
+        if (this.files.length > 0) {
+
+            fileNames[1].textContent =
+                this.files[0].name;
+
+        }
+
+    }
+);
+
+</script>
+
 
 </body>
+
 </html>

@@ -8,7 +8,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>Raju Singh - Portfolio</title>
+    <title>{{name}} - Portfolio</title>
 
     <link rel="stylesheet"
           href="/static/style.css">
@@ -29,9 +29,9 @@
             alt="Profile Photo"
         >
 
-        <h1>Raju Singh</h1>
+        <h1>{{name}}</h1>
 
-        <h2>B.Tech CSE AIML Student</h2>
+        <h2>{{headline}}</h2>
 
         <div class="hero-buttons">
 
@@ -61,7 +61,7 @@
         <h3>👋 About Me</h3>
 
         <p class="summary">
-            Raju Singh is an aspiring software developer pursuing a B.Tech in Computer Science with a specialization in AI and ML at GLA University. He possesses a strong foundational knowledge of Python, JavaScript, HTML, and CSS, demonstrated through hands-on projects like a weather dashboard and portfolio website. Committed to continuous learning, he actively participates in technical bootcamps and workshops to expand his skillset.
+            {{summary}}
         </p>
 
     </div>
@@ -75,7 +75,7 @@
 
         <div class="skills-container">
 
-            <span class="skill">Python</span><span class="skill">HTML</span><span class="skill">CSS</span><span class="skill">JavaScript</span>
+            {{skills}}
 
         </div>
 
@@ -90,15 +90,7 @@
 
         <div class="projects-container">
 
-            
-    <div class="project-card">
-        <h4>Portfolio Website</h4>
-    </div>
-    
-    <div class="project-card">
-        <h4>Weather Dashboard</h4>
-    </div>
-    
+            {{projects}}
 
         </div>
 
@@ -111,7 +103,7 @@
 
         <h3>🎓 Education</h3>
 
-        <ul><li>GLA University Mathura - B.Tech CSE AIML Student</li></ul>
+        {{education}}
 
     </div>
 
@@ -122,7 +114,7 @@
 
         <h3>🏆 Achievements</h3>
 
-        <ul><li>Completed Summer Bootcamp</li><li>Participated in AI Workshop</li></ul>
+        {{achievements}}
 
     </div>
 
@@ -133,28 +125,7 @@
 
         <h3>📬 Contact</h3>
 
-        
-<p>
-    <strong>Email:</strong>
-    <a href="mailto:rajholkar08@gmail.com">
-        rajholkar08@gmail.com
-    </a>
-</p>
-
-<p>
-    <strong>GitHub:</strong>
-    <a href="https://https://github.com/rajholkar08-code" target="_blank">
-        https://github.com/rajholkar08-code
-    </a>
-</p>
-
-<p>
-    <strong>LinkedIn:</strong>
-    <a href="https://https://www.linkedin.com/in/raju-singh-57a941383/" target="_blank">
-        https://www.linkedin.com/in/raju-singh-57a941383/
-    </a>
-</p>
-
+        {{contact}}
 
     </div>
 

@@ -1,30 +1,58 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file
 import os
-from flask import send_file
-import pdfkit
+import subprocess
+import sys
 
 app = Flask(__name__)
 
 UPLOAD_FOLDER = "uploads"
+
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 
+# =========================================
+# HOME PAGE
+# =========================================
+
 @app.route("/")
 def home():
+
     return render_template("index.html")
 
+
+# =========================================
+# UPLOAD RESUME
+# =========================================
 
 @app.route("/upload", methods=["POST"])
 def upload():
 
-    file = request.files["resume"]
+    file = request.files.get("resume")
 
-    if file.filename == "":
-        return "No file selected"
+    theme = request.form.get("theme", "blue")
 
-    # Save Resume
+    photo = request.files.get("photo")
+
+
+    # Check resume
+
+    if not file or file.filename == "":
+        return "Please select a resume."
+
+
+    # Save profile photo
+
+    if photo and photo.filename != "":
+
+        photo.save(
+            "static/profile.jpg"
+        )
+
+
+    # Save resume
+
     filepath = os.path.join(
         app.config["UPLOAD_FOLDER"],
         "resume.txt"
@@ -32,37 +60,62 @@ def upload():
 
     file.save(filepath)
 
-    # Save Photo (optional)
-    photo = request.files.get("photo")
 
-    if photo and photo.filename != "":
-        os.makedirs("static", exist_ok=True)
-        photo.save("static/profile.jpg")
+    # Run AI portfolio generator
 
-    # Run Generator
-    os.system("python main.py")
+    result = subprocess.run(
+        [sys.executable, "main.py"],
+        capture_output=True,
+        text=True
+    )
 
-    # Show Portfolio
-    return render_template("portfolio.html")
+
+    # Show errors if main.py fails
+
+    if result.returncode != 0:
+
+        print(result.stdout)
+
+        print(result.stderr)
+
+        return (
+            "<h2>Portfolio generation failed.</h2>"
+            "<pre>"
+            + result.stderr
+            + "</pre>"
+        )
+
+
+    # Open generated portfolio
+
+    return render_template(
+        "portfolio.html",
+        theme=theme
+    )
+
+
+# =========================================
+# DOWNLOAD PDF
+# =========================================
 
 @app.route("/download")
-def download_pdf():
+def download():
 
-    config = pdfkit.configuration(
-        wkhtmltopdf=r"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe"
-    )
+    pdf_path = "portfolio.pdf"
 
-    pdfkit.from_file(
-        "templates/portfolio.html",
-        "portfolio.pdf",
-        configuration=config
-    )
+    if os.path.exists(pdf_path):
 
-    return send_file(
-        "portfolio.pdf",
-        as_attachment=True
-    )
+        return send_file(
+            pdf_path,
+            as_attachment=True
+        )
 
+    return "PDF not generated yet."
+
+
+# =========================================
+# RUN FLASK
+# =========================================
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000)
