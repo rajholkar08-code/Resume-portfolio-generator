@@ -12,19 +12,10 @@ app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 
-# =========================================
-# HOME PAGE
-# =========================================
-
 @app.route("/")
 def home():
-
     return render_template("index.html")
 
-
-# =========================================
-# UPLOAD RESUME
-# =========================================
 
 @app.route("/upload", methods=["POST"])
 def upload():
@@ -35,68 +26,55 @@ def upload():
 
     photo = request.files.get("photo")
 
-
-    # Check resume
-
     if not file or file.filename == "":
         return "Please select a resume."
 
+    # Delete old resumes
+    for f in os.listdir(UPLOAD_FOLDER):
 
-    # Save profile photo
-
-    if photo and photo.filename != "":
-
-        photo.save(
-            "static/profile.jpg"
+        path = os.path.join(
+            UPLOAD_FOLDER,
+            f
         )
 
+        if os.path.isfile(path):
+            os.remove(path)
 
-    # Save resume
+    # Save profile image
+    if photo and photo.filename != "":
+        photo.save("static/profile.jpg")
+
+    # Save uploaded resume
+    filename = file.filename
 
     filepath = os.path.join(
-        app.config["UPLOAD_FOLDER"],
-        "resume.txt"
+        UPLOAD_FOLDER,
+        filename
     )
 
     file.save(filepath)
 
-
-    # Run AI portfolio generator
-
+    # Run AI Generator
     result = subprocess.run(
         [sys.executable, "main.py"],
         capture_output=True,
         text=True
     )
 
-
-    # Show errors if main.py fails
-
     if result.returncode != 0:
-
-        print(result.stdout)
-
-        print(result.stderr)
 
         return (
             "<h2>Portfolio generation failed.</h2>"
             "<pre>"
-            + result.stderr
-            + "</pre>"
+            + result.stderr +
+            "</pre>"
         )
-
-
-    # Open generated portfolio
 
     return render_template(
         "portfolio.html",
         theme=theme
     )
 
-
-# =========================================
-# DOWNLOAD PDF
-# =========================================
 
 @app.route("/download")
 def download():
@@ -113,9 +91,8 @@ def download():
     return "PDF not generated yet."
 
 
-# =========================================
-# RUN FLASK
-# =========================================
-
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(
+        host="0.0.0.0",
+        port=5000
+    )

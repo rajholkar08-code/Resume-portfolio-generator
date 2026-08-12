@@ -1,11 +1,13 @@
 import os
 import json
+
 from dotenv import load_dotenv
 from google import genai
+from pypdf import PdfReader
 
-# ==========================================
-# LOAD API KEY
-# ==========================================
+# ==========================
+# GEMINI
+# ==========================
 
 load_dotenv()
 
@@ -13,18 +15,56 @@ client = genai.Client(
     api_key=os.getenv("GEMINI_API_KEY")
 )
 
+# ==========================
+# READ RESUME
+# ==========================
 
-# ==========================================
-# READ UPLOADED RESUME
-# ==========================================
+resume_text = ""
 
-with open("uploads/resume.txt", "r", encoding="utf-8") as file:
-    resume_text = file.read()
+files = os.listdir("uploads")
 
+if not files:
+    raise Exception("No resume uploaded")
 
-# ==========================================
-# GEMINI PROMPT
-# ==========================================
+resume_file = os.path.join(
+    "uploads",
+    files[0]
+)
+
+# PDF
+if resume_file.lower().endswith(".pdf"):
+
+    reader = PdfReader(
+        resume_file
+    )
+
+    for page in reader.pages:
+
+        text = page.extract_text()
+
+        if text:
+            resume_text += text + "\n"
+
+# TXT
+elif resume_file.lower().endswith(".txt"):
+
+    with open(
+        resume_file,
+        "r",
+        encoding="utf-8"
+    ) as file:
+
+        resume_text = file.read()
+
+else:
+
+    raise Exception(
+        "Only PDF and TXT files are supported."
+    )
+
+# ==========================
+# PROMPT
+# ==========================
 
 prompt = f"""
 Analyze the following resume.
@@ -34,119 +74,115 @@ Return ONLY valid JSON.
 Required format:
 
 {{
-    "name": "",
-    "headline": "",
-    "summary": "",
-    "skills": [],
-    "education": [],
-    "projects": [],
-    "achievements": [],
-    "contact": {{
-        "email": "",
-        "github": "",
-        "linkedin": ""
-    }}
+"name":"",
+"headline":"",
+"summary":"",
+"skills":[],
+"education":[],
+"projects":[],
+"achievements":[],
+"contact":
+{{
+"email":"",
+"github":"",
+"linkedin":""
+}}
 }}
 
-Generate a professional 2-3 line summary about the candidate.
+Generate a professional 2-3 line summary.
 
 Resume:
 
 {resume_text}
 """
 
-
-# ==========================================
-# GEMINI API CALL
-# ==========================================
+# ==========================
+# GEMINI
+# ==========================
 
 response = client.models.generate_content(
     model="gemini-3.5-flash",
     contents=prompt
 )
 
-print("===== GEMINI RESPONSE =====")
-print(response.text)
-
-
-# ==========================================
-# CLEAN GEMINI RESPONSE
-# ==========================================
-
 json_text = response.text.strip()
 
-if json_text.startswith("```json"):
-    json_text = json_text[7:]
+json_text = json_text.replace(
+    "```json",
+    ""
+)
 
-if json_text.startswith("```"):
-    json_text = json_text[3:]
-
-if json_text.endswith("```"):
-    json_text = json_text[:-3]
+json_text = json_text.replace(
+    "```",
+    ""
+)
 
 json_text = json_text.strip()
 
-
-# ==========================================
+# ==========================
 # SAVE JSON
-# ==========================================
+# ==========================
 
-with open("resume_data.json", "w", encoding="utf-8") as file:
+with open(
+    "resume_data.json",
+    "w",
+    encoding="utf-8"
+) as file:
+
     file.write(json_text)
 
-print("JSON Saved Successfully!")
+# ==========================
+# LOAD JSON
+# ==========================
 
+with open(
+    "resume_data.json",
+    "r",
+    encoding="utf-8"
+) as file:
 
-# ==========================================
-# READ JSON
-# ==========================================
-
-with open("resume_data.json", "r", encoding="utf-8") as file:
     data = json.load(file)
 
-print("===== JSON DATA =====")
-print(data)
-
-
-# ==========================================
-# IMPORTANT:
-# READ TEMPLATE FROM templates FOLDER
-# ==========================================
+# ==========================
+# TEMPLATE
+# ==========================
 
 with open(
     "templates/template.html",
     "r",
     encoding="utf-8"
 ) as file:
+
     template = file.read()
 
-
-# ==========================================
-# BASIC INFORMATION
-# ==========================================
+# ==========================
+# DATA
+# ==========================
 
 name = data.get("name", "")
 headline = data.get("headline", "")
 summary = data.get("summary", "")
 
-
-# ==========================================
-# SKILLS
-# ==========================================
+# Skills
 
 skills_html = ""
 
 for skill in data.get("skills", []):
-    skills_html += f'<span class="skill">{skill}</span>'
 
+    skills_html += (
+        f'<span class="skill">'
+        f'{skill}'
+        f'</span>'
+    )
 
-# ==========================================
-# PROJECTS
-# ==========================================
+# Projects
 
 projects_html = ""
 
-for project in data.get("projects", []):
+for project in data.get(
+    "projects",
+    []
+):
 
     projects_html += f"""
     <div class="project-card">
@@ -154,70 +190,57 @@ for project in data.get("projects", []):
     </div>
     """
 
-
-# ==========================================
-# EDUCATION
-# ==========================================
+# Education
 
 education_html = "<ul>"
 
-for edu in data.get("education", []):
-    education_html += f"<li>{edu}</li>"
+for edu in data.get(
+    "education",
+    []
+):
+
+    education_html += (
+        f"<li>{edu}</li>"
+    )
 
 education_html += "</ul>"
 
-
-# ==========================================
-# ACHIEVEMENTS
-# ==========================================
+# Achievements
 
 achievements_html = "<ul>"
 
-for achievement in data.get("achievements", []):
-    achievements_html += f"<li>{achievement}</li>"
+for item in data.get(
+    "achievements",
+    []
+):
+
+    achievements_html += (
+        f"<li>{item}</li>"
+    )
 
 achievements_html += "</ul>"
 
+# Contact
 
-# ==========================================
-# CONTACT
-# ==========================================
-
-contact = data.get("contact", {})
-
-email = contact.get("email", "")
-github = contact.get("github", "")
-linkedin = contact.get("linkedin", "")
+contact = data.get(
+    "contact",
+    {}
+)
 
 contact_html = f"""
-<p>
-    <strong>Email:</strong>
-    <a href="mailto:{email}">
-        {email}
-    </a>
-</p>
-
-<p>
-    <strong>GitHub:</strong>
-    <a href="https://{github}" target="_blank">
-        {github}
-    </a>
-</p>
-
-<p>
-    <strong>LinkedIn:</strong>
-    <a href="https://{linkedin}" target="_blank">
-        {linkedin}
-    </a>
-</p>
+<p>Email: {contact.get('email','')}</p>
+<p>Github: {contact.get('github','')}</p>
+<p>LinkedIn: {contact.get('linkedin','')}</p>
 """
 
+# ==========================
+# REPLACE
+# ==========================
 
-# ==========================================
-# REPLACE TEMPLATE VARIABLES
-# ==========================================
-
-template = template.replace("{{name}}", name)
+template = template.replace(
+    "{{name}}",
+    name
+)
 
 template = template.replace(
     "{{headline}}",
@@ -254,19 +277,16 @@ template = template.replace(
     contact_html
 )
 
-
-# ==========================================
-# SAVE GENERATED PORTFOLIO
-# ==========================================
+# ==========================
+# SAVE PORTFOLIO
+# ==========================
 
 with open(
     "templates/portfolio.html",
     "w",
     encoding="utf-8"
 ) as file:
+
     file.write(template)
 
-
-print("================================")
-print("Portfolio Generated Successfully!")
-print("================================")
+print("Portfolio Generated Successfully")
