@@ -1,117 +1,98 @@
-# Raju Singh
-
+RAJU SINGH
 Mathura, Uttar Pradesh, India
+📧 rajholkar08@gmail.com
+🌐 GitHub: github.com/rajholkar08-code
+🔗 LinkedIn: https://www.linkedin.com/in/raju-singh-57a941383/
 
-Email: [your.email@example.com](mailto:your.email@example.com)
-Phone: +91 XXXXX XXXXX
-GitHub: github.com/yourusername
-LinkedIn: linkedin.com/in/yourprofile
+--------------------------------------------
+PROFESSIONAL SUMMARY
+--------------------------------------------
 
-## Professional Summary
+B.Tech Computer Science Engineering (AI & ML) student at GLA University with hands-on experience in Python, Machine Learning, Data Analysis, Flask, and Web Development. Skilled in building AI-powered applications, integrating APIs, and developing data-driven solutions. Passionate about creating practical software products and exploring emerging AI technologies.
 
-B.Tech Computer Science Engineering (Artificial Intelligence & Machine Learning) student at GLA University with strong foundations in Python, Machine Learning, Data Analysis, Web Development, and AI applications. Experienced in building end-to-end projects involving Flask, Gemini API integration, SQL databases, and data processing. Passionate about solving real-world problems through AI-driven solutions and continuously improving technical skills through projects and hackathons.
+--------------------------------------------
+EDUCATION
+--------------------------------------------
 
-## Education
-
-**GLA University, Mathura**
-B.Tech – Computer Science Engineering (AI & ML)
+GLA University, Mathura
+B.Tech Computer Science Engineering (AI & ML)
 Expected Graduation: 2029
 
 Relevant Coursework:
+• Data Structures & Algorithms
+• Python Programming
+• Database Management Systems
+• Machine Learning Fundamentals
+• Data Engineering
+• Web Development
 
-* Data Structures and Algorithms
-* Python Programming
-* Database Management Systems
-* Machine Learning Fundamentals
-* Data Engineering
-* Web Development
+--------------------------------------------
+TECHNICAL SKILLS
+--------------------------------------------
 
-## Technical Skills
+Programming:
+Python, SQL, JavaScript, HTML, CSS
 
-### Programming Languages
+Machine Learning:
+Scikit-learn, Pandas, NumPy, Data Analysis
 
-* Python
-* SQL
-* JavaScript
-* HTML
-* CSS
+Databases:
+PostgreSQL, MySQL, Supabase
 
-### AI / ML
+Web Development:
+Flask, REST APIs, Responsive Design
 
-* Scikit-learn
-* Pandas
-* NumPy
-* Data Preprocessing
-* Model Evaluation
+Tools:
+Git, GitHub, VS Code, Postman, Google Colab
 
-### Databases
+--------------------------------------------
+PROJECTS
+--------------------------------------------
 
-* PostgreSQL
-* Supabase
-* MySQL
+1. AI Resume Portfolio Generator
+• Developed a Flask-based application that converts resumes into portfolio websites.
+• Integrated Gemini API for resume analysis and structured data extraction.
+• Automated portfolio generation using HTML, CSS, and JSON.
 
-### Web Development
+Tech Stack:
+Python, Flask, Gemini API, HTML, CSS
 
-* Flask
-* REST APIs
-* Responsive Web Design
+2. Weather Dashboard
+• Built a responsive weather application using external APIs.
+• Displayed real-time weather information dynamically.
 
-### Tools
+Tech Stack:
+Python, Flask, APIs, HTML, CSS
 
-* Git
-* GitHub
-* VS Code
-* Google Colab
-* DBeaver
-* Postman
+3. Life Expectancy Data Analysis
+• Performed data cleaning and exploratory data analysis.
+• Built predictive models to identify factors affecting life expectancy.
 
-## Projects
+Tech Stack:
+Python, Pandas, NumPy, Scikit-learn
 
-### AI-Assisted Resume Portfolio Generator
+--------------------------------------------
+CERTIFICATIONS
+--------------------------------------------
 
-* Built a Flask-based application that converts resume content into a professional portfolio website.
-* Integrated Gemini API for extracting structured information from resumes.
-* Generated JSON-based portfolio data and dynamic HTML webpages automatically.
-* Implemented API error handling and deployment workflow using Render.
+• Microsoft Azure Fundamentals (AZ-900)
+• AI & Machine Learning Bootcamp
+• Python Programming Certification
 
-**Technologies:** Python, Flask, Gemini API, HTML, CSS, JSON
+--------------------------------------------
+ACHIEVEMENTS
+--------------------------------------------
 
-### Weather Dashboard
+• Developed and deployed an AI-powered portfolio generation system.
+• Completed multiple academic projects in AI, Data Analysis, and Web Development.
+• Participated in hackathons and project-based learning activities.
 
-* Developed a weather dashboard using APIs to display real-time weather information.
-* Designed responsive user interface and handled API responses efficiently.
+--------------------------------------------
+INTERESTS
+--------------------------------------------
 
-**Technologies:** Python, Flask, API Integration, HTML, CSS
-
-### Data Analysis on Life Expectancy Dataset
-
-* Performed data cleaning, preprocessing, and exploratory analysis.
-* Built predictive models to analyze factors affecting life expectancy.
-
-**Technologies:** Python, Pandas, NumPy, Scikit-learn
-
-## Certifications
-
-* Microsoft Azure Fundamentals (AZ-900)
-* AI & Machine Learning Bootcamp
-* Python Programming Certification
-
-## Achievements
-
-* Successfully deployed a full-stack AI-powered portfolio generation project.
-* Completed multiple academic projects involving AI, databases, and web technologies.
-* Participated in AI/ML hackathon activities and project-based learning programs.
-
-## Leadership & Activities
-
-* Active participant in technical workshops and coding sessions.
-* Collaborated in team-based software development projects.
-* Regular contributor to GitHub-based project development.
-
-## Interests
-
-* Artificial Intelligence
-* Machine Learning
-* Data Engineering
-* Full Stack Development
-* Cloud Computing
+Artificial Intelligence
+Machine Learning
+Data Engineering
+Full Stack Development
+Cloud Computing

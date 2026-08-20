@@ -1090,3 +1090,50 @@ footer {
     }
 
 }
+
+/* BLUE */
+
+.blue {
+    background: #eef4ff;
+}
+
+/* DARK */
+
+.dark {
+    background: #0f172a;
+    color: white;
+}
+
+.dark .container {
+    background: #111827;
+}
+
+.dark .card {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+.dark p,
+.dark li {
+    color: #cbd5e1;
+}
+
+.dark .summary {
+    color: #cbd5e1;
+}
+
+.dark a {
+    color: #60a5fa;
+}
+
+/* GREEN */
+
+.green {
+
+    background: #ecfdf5;
+}
+
+.green .skill {
+
+    background: #10b981;
+}

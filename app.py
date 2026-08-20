@@ -31,7 +31,6 @@ def upload():
 
     # Delete old resumes
     for f in os.listdir(UPLOAD_FOLDER):
-
         path = os.path.join(
             UPLOAD_FOLDER,
             f
@@ -54,6 +53,11 @@ def upload():
 
     file.save(filepath)
 
+    theme = request.form.get("theme", "blue")
+
+    with open("theme.txt", "w") as f:
+        f.write(theme)
+
     # Run AI Generator
     result = subprocess.run(
         [sys.executable, "main.py"],
@@ -70,10 +74,20 @@ def upload():
             "</pre>"
         )
 
-    return render_template(
-        "portfolio.html",
-        theme=theme
-    )
+    with open("templates/portfolio.html","r",encoding="utf-8") as f:
+        html = f.read()
+
+    html = html.replace("{{theme}}", theme)
+
+    with open("templates/portfolio.html","w",encoding="utf-8") as f:
+        f.write(html)
+
+    return render_template("portfolio.html")
+
+    theme = request.form.get("theme", "blue")
+
+    with open("theme.txt", "w") as f:
+        f.write(theme)
 
 
 @app.route("/download")

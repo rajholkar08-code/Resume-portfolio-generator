@@ -292,7 +292,9 @@ contact_html = f"""
 selected_theme = "blue"
 
 if os.path.exists("theme.txt"):
+
     with open("theme.txt", "r") as f:
+
         selected_theme = f.read().strip()
 
 # ==========================
