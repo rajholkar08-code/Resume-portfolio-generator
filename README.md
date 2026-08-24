@@ -120,13 +120,15 @@ Resume-portfolio-generator/
 
 ---
 
-##AI Tool Used: ChatGPT and Google Gemini
+## AI Tool Used: ChatGPT and Google Gemini
 
-###Prompt: Generate portfolio UI ideas, Flask integration guidance, and extract resume information into structured JSON.
+During the development of this project, AI tools were used for assistance in design, debugging, code improvement, and AI integration. All AI-generated outputs were reviewed, modified, tested, and understood before implementation.
 
-###Generated Output: HTML/CSS suggestions, debugging support, and structured resume data.
+Prompt: Generate portfolio UI ideas, Flask integration guidance, and extract resume information into structured JSON.
 
-###Changes Made: Reviewed generated code, fixed JSON handling, improved UI design, added theme support, and tested all functionality before implementation.
+Generated Output: HTML/CSS suggestions, debugging support, and structured resume data.
+
+Changes Made: Reviewed generated code, fixed JSON handling, improved UI design, added theme support, and tested all functionality before implementation.
 
 ---
 
